@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
 	darkMode: ["class"],
@@ -52,21 +53,25 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+				// Sidebar theming simplified based on PRD
+        sidebar: {
+          DEFAULT: 'hsl(var(--sidebar-background))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+        },
+        // Additional PRD accent colors not covered by semantic names
+        'prd-accent-orange': 'var(--prd-accent-orange)', // Using CSS var defined in :root
+        'prd-accent-green': 'var(--prd-accent-green)', // Using CSS var defined in :root
+        // Other PRD colors are mapped via semantic names like primary, accent, background, foreground, card, muted-foreground
 			},
+			fontFamily: {
+        sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
+      },
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+        // Existing structure using --radius (0.5rem) for 'lg'. 'md' becomes 0.375rem.
+				lg: 'var(--radius)', // 0.5rem
+				md: 'calc(var(--radius) - 2px)', // 0.5rem - 2px = 0.375rem (Tailwind's default md)
+				sm: 'calc(var(--radius) - 4px)', // 0.5rem - 4px = 0.25rem (Tailwind's default sm)
+        full: '9999px', // Added for PRD buttons: rounded-full
 			},
 			keyframes: {
 				'accordion-down': {
