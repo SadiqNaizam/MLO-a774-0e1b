@@ -2,56 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* PRD Design System Colors (mapped to Shadcn conventions) */
+    --background: 240 25% 96.1%; /* PRD background: #F3F3F9 */
+    --foreground: 210 17% 14.5%; /* PRD primaryText: #212529 */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%; /* PRD surface: #FFFFFF */
+    --card-foreground: 210 17% 14.5%; /* PRD primaryText: #212529 */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%; /* PRD surface: #FFFFFF */
+    --popover-foreground: 210 17% 14.5%; /* PRD primaryText: #212529 */
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 201 70% 51%; /* PRD accentBlue: #299CDB */
+    --primary-foreground: 0 0% 100%; /* White for text on primary */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 220 27% 92%; /* PRD sidebar: #E6E9EF (used as secondary bg) */
+    --secondary-foreground: 210 17% 14.5%; /* PRD primaryText for text on secondary */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 30% 95%; /* Lighter shade of sidebar/secondary for muted bg e.g. #F0F2F7 */
+    --muted-foreground: 231 9% 56.5%; /* PRD secondaryText: #878A99 */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 187 100% 37.8%; /* PRD accentTeal: #00ADC1 */
+    --accent-foreground: 0 0% 100%; /* White for text on accent */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%; /* Existing: Fallback red */
+    --destructive-foreground: 210 40% 98%; /* Existing: Fallback light text */
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 214.3 31.8% 91.4%; /* Existing: #E9ECF2, suitable light border */
+    --input: 214.3 31.8% 91.4%; /* Existing: Same as border */
+    --ring: 201 70% 51%; /* PRD accentBlue: #299CDB for focus rings */
 
-    --radius: 0.5rem;
+    /* Radius - PRD default is rounded-md (0.375rem). Shadcn default for --radius is often 0.5rem for rounded-lg. */
+    /* We keep existing --radius at 0.5rem and ensure rounded-md is 0.375rem via Tailwind config. */
+    --radius: 0.5rem; /* Existing base radius for 'lg' components */
 
-    --sidebar-background: 0 0% 98%;
+    /* Specific PRD variables (not directly used by Shadcn HSL system but can be if needed) */
+    --prd-page-background: #F3F3F9;
+    --prd-surface: #FFFFFF;
+    --prd-sidebar-bg: #E6E9EF;
+    --prd-primary-text: #212529;
+    --prd-secondary-text: #878A99;
+    --prd-accent-blue: #299CDB;
+    --prd-accent-teal: #00ADC1;
+    --prd-accent-orange: #FFA700;
+    --prd-accent-green: #2ECC71;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Font */
+    --font-sans: "Nunito", sans-serif;
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Simplified Sidebar Theming based on PRD */
+    --sidebar-background: 220 27% 92%; /* PRD sidebar: #E6E9EF */
+    --sidebar-foreground: 210 17% 14.5%; /* PRD primaryText: #212529 for text on sidebar */
   }
 
   .dark {
+    /* PRD does not specify a dark theme. Preserving existing dark theme variables. */
+    /* These should be updated if a dark theme PRD is provided. */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -79,14 +88,10 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Simplified Sidebar Theming for dark mode (using generic dark theme values as placeholder) */
+    --sidebar-background: 222.2 84% 4.9%; /* Example: using dark background */
+    --sidebar-foreground: 210 40% 98%;    /* Example: using dark foreground */
   }
 }
 
@@ -97,5 +102,8 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
